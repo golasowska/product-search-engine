@@ -1,11 +1,14 @@
 import React  from 'react';
+import SearchBar from './SearchBar';
+import { history } from '../store/configureStore';
 
 
 class App extends React.Component {
+
   render() {
     return (
       <div>
-        Product Search Engine
+        <SearchBar  />
       </div>
     );
   }
