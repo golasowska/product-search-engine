@@ -1,17 +1,23 @@
 import React  from 'react';
+import { history } from '../store/configureStore';
+import { ConnectedRouter } from 'react-router-redux';
+import { Route } from 'react-router-dom';
+
 import SearchBar from './SearchBar';
 import DisplayData from './DisplayData';
-import { history } from '../store/configureStore';
+
 
 
 class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <SearchBar  />
-        <DisplayData />
-      </div>
+      <ConnectedRouter history={history}>
+        <div className='container'>
+          <Route exact path='/' component={SearchBar}  />
+          <Route path='/results' component= {DisplayData} />
+        </div>
+      </ConnectedRouter>
     );
   }
 }

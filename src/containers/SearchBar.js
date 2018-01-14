@@ -6,7 +6,9 @@ import * as Actions  from '../actions';
 class SearchBar extends React.Component {
 
 handleFormSubmit = (values) => {
-  this.props.performQuery(values);
+  this.props.performQuery(values,()=>{
+  this.props.history.push('/results');
+  });
 }
 
 renderTextField = ({ input, label, type}) => (

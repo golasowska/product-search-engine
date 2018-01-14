@@ -7,7 +7,7 @@ const elasticClient = new elasticsearch.Client({
   log: 'trace'
 });
 
-export function performQuery(values) {
+export function performQuery(values, callback) {
   const value=values.title;
   return function(dispatch) {
     elasticClient.search({
@@ -15,6 +15,7 @@ export function performQuery(values) {
     })
     .then(
       function(body) {
+        callback()
         dispatch({
           type: DISPLAY_PRODUCTS,
           payload: body.hits.hits
