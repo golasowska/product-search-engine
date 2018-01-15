@@ -3,6 +3,8 @@ import { Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import * as Actions  from '../actions';
 
+import Navigation from './Navigation';
+
 class SearchBar extends React.Component {
 
 handleFormSubmit = (values) => {
@@ -22,6 +24,8 @@ renderTextField = ({ input, label, type}) => (
 
     render() {
         return (
+          <div>
+          <Navigation />
             <div className='container'>
               <div className='col-md-6 col-md-offset-3'>
                 <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)} >
@@ -30,6 +34,7 @@ renderTextField = ({ input, label, type}) => (
                 </form>
               </div>
             </div>
+          </div>
         )
     }
 }
