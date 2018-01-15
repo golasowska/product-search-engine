@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import ShowProduct from './ShowProduct';
 
+import Navigation from './Navigation';
+
 class DisplayData extends React.Component{
 
 
@@ -17,6 +19,9 @@ showData=()=>{
 
   render() {
     return <div>
+      <div>
+        <Navigation />
+      </div>
       {this.showData()}
     </div>
   }

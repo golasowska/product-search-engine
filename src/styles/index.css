@@ -8,3 +8,19 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+.pagination a {
+  padding: 10px;
+  background: #ededed;
+  cursor: pointer;
+}
+
+.previous .disabled {
+  padding: 10px;
+  background: #b0acac;
+  cursor: pointer;
+}
+
+ul.pagination {
+    margin-top: 20px;
+}

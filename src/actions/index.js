@@ -16,6 +16,7 @@ export function performQuery(values, callback) {
     })
     .then(
       function(body) {
+        console.log('hityyy', body.hits.total)
         callback()
         dispatch({
           type: DISPLAY_PRODUCTS,
@@ -28,12 +29,14 @@ export function performQuery(values, callback) {
   }
 }
 
-export function fetchCategory(value) {
-  console.log('valiu', value);
-  const item = value
+export function fetchCategory(value, from) {
+  const item = value;
+  const pgNum = from;
   return function(dispatch){
     elasticClient.search({
       body: {
+        'from' : pgNum,
+        'size' : 5,
         query: {
           match: {
             tags: item
@@ -45,7 +48,7 @@ export function fetchCategory(value) {
       function(body) {
         dispatch({
           type: DISPLAY_CATEGORY,
-          payload: body.hits.hits
+          payload: body.hits
         })
       }
     ).catch(function(error){
