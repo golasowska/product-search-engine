@@ -1,17 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
+
 import _ from 'lodash';
 import * as Actions from '../actions';
 import ShowProduct from './ShowProduct';
+import Navigation from './Navigation';
 
 
 class DisplayData extends React.Component{
-
+  constructor(props){
+    super(props);
+    this.state={
+      selected_page: 1
+    }
+  }
 
 showData=()=>{
   const data = Object.assign({}, this.props.data.data);
-  console.log('data', data.hits);
   return _.map(data.hits, product=>{
     return <ShowProduct key ={product._id} product={product} />
   })
@@ -19,19 +25,24 @@ showData=()=>{
 }
 
 handlePageClick=(data)=>{
+  console.log('paramsiki', this.props.match);
   const values = {title: this.props.data.name};
-  let from = data.selected;
-  this.props.performQuery(values, from)
+  let selected_page = data.selected;
+  this.props.performQuery(values, selected_page);
+  this.setState({
+    selected_page: selected_page+1
+  });
+  this.props.history.push(`/products/page=${data.selected+1 }`)
 }
 
 
   render() {
     const data = Object.assign({}, this.props.data.data);
-    console.log('dataData', data.hits);
     const totalHits = data.total;
-    console.log('data total', data.total);
     const pageCount = Math.ceil(totalHits/5)
     return <div>
+      <Navigation />
+
       {this.showData()}
       <div>
       <ReactPaginate previousLabel='<'

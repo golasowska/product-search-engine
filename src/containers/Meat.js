@@ -11,14 +11,14 @@ class Meat extends React.Component{
 
   componentDidMount=()=>{
     const value = 'meat';
-    const from = 0;
-    this.props.fetchCategory(value, from);
+    const selected_page = 0;
+    this.props.fetchCategory(value, selected_page);
   }
 
   handlePageClick=(data)=>{
     const value = 'meat';
-    let from = data.selected;
-    this.props.fetchCategory(value, from)
+    let selected_page = data.selected;
+    this.props.fetchCategory(value, selected_page)
   }
 
   showData=()=> {

@@ -8,14 +8,16 @@ const elasticClient = new elasticsearch.Client({
   log: 'trace'
 });
 
-export function performQuery(values,from) {
+export function performQuery(values,selected_page) {
   const value=values.title;
-  const pgNum = from;
+  const page_size= 5;
+  const page_number = Number(selected_page);
+  const from = (page_size * page_number);
   return function(dispatch) {
     elasticClient.search({
+      size : page_size,
+      from : from,
       body :{
-        'from' : pgNum,
-        'size' : 5,
         query:{
           match:{
             name: value
@@ -37,14 +39,16 @@ export function performQuery(values,from) {
   }
 }
 
-export function fetchCategory(value, from) {
+export function fetchCategory(value, selected_page) {
   const item = value;
-  const pgNum = from;
+  const page_size= 5;
+  const page_number = Number(selected_page);
+  const from = (page_size * page_number);
   return function(dispatch){
     elasticClient.search({
+      from : from,
+      size : page_size,
       body: {
-        'from' : pgNum,
-        'size' : 5,
         query: {
           match: {
             tags: item

@@ -11,15 +11,15 @@ class Vegetable extends React.Component{
 
   componentDidMount=()=>{
     const value = 'vegetable';
-    const from = 0;
+    const selected_page = 0;
 
-    this.props.fetchCategory(value, from);
+    this.props.fetchCategory(value, selected_page);
   }
 
   handlePageClick=(data)=>{
     const value = 'vegetable';
-    let from = data.selected;
-    this.props.fetchCategory(value, from)
+    let selected_page = data.selected;
+    this.props.fetchCategory(value, selected_page)
   }
 
   showData=()=> {

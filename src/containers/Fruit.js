@@ -12,14 +12,14 @@ class Fruit extends React.Component {
 
   componentDidMount=() =>{
     const value = 'fruit';
-    const from = 0;
-    this.props.fetchCategory(value, from);
+    const selected_page = 0;
+    this.props.fetchCategory(value, selected_page);
   }
 
   handlePageClick=(data)=>{
     const value = 'fruit';
-    let from = data.selected;
-    this.props.fetchCategory(value, from)
+    let selected_page = data.selected;
+    this.props.fetchCategory(value, selected_page)
   }
 
   showData=()=> {

@@ -19,7 +19,7 @@ class App extends React.Component {
       <ConnectedRouter history={history}>
         <div className='container'>
           <Route exact path='/' component={SearchBar}  />
-          <Route path='/results' component= {DisplayData} />
+          <Route path='/products' component ={DisplayData} />
           <Route path='/fruit' component= {Fruit} />
           <Route path='/vegetable' component = {Vegetable} />
           <Route path='/meat' component = {Meat} />

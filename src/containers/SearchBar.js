@@ -1,16 +1,26 @@
 import React from 'react';
 import { Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as Actions  from '../actions';
 import DisplayData from './DisplayData';
 
 import Navigation from './Navigation';
 
 class SearchBar extends React.Component {
+  constructor(props ){
+    super(props);
+    this.state={
+      render: false
+    }
+  }
 
 handleFormSubmit = (values) => {
   const from = 0;
   this.props.performQuery(values,from);
+  this.setState({
+    render: true
+  })
 }
 
 renderTextField = ({ input, label, type}) => (
@@ -35,7 +45,8 @@ renderTextField = ({ input, label, type}) => (
               </div>
             </div>
             <div>
-              <DisplayData />
+              {this.state.render ? (<Redirect to={{pathname:'/products/page=1'}}/>):null}
+              {this.state.render? (<DisplayData />):null}
             </div>
           </div>
         )
