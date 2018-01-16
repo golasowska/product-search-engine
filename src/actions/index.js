@@ -8,19 +8,27 @@ const elasticClient = new elasticsearch.Client({
   log: 'trace'
 });
 
-export function performQuery(values, callback) {
+export function performQuery(values,from) {
   const value=values.title;
+  const pgNum = from;
   return function(dispatch) {
     elasticClient.search({
-      q: value
+      body :{
+        'from' : pgNum,
+        'size' : 5,
+        query:{
+          match:{
+            name: value
+        }
+      }
+    }
     })
     .then(
       function(body) {
-        console.log('hityyy', body.hits.total)
-        callback()
+        const data = {data: body.hits, name: value}
         dispatch({
           type: DISPLAY_PRODUCTS,
-          payload: body.hits.hits
+          payload: data
         })
       }
     ).catch(function(error) {

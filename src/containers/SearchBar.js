@@ -2,15 +2,15 @@ import React from 'react';
 import { Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import * as Actions  from '../actions';
+import DisplayData from './DisplayData';
 
 import Navigation from './Navigation';
 
 class SearchBar extends React.Component {
 
 handleFormSubmit = (values) => {
-  this.props.performQuery(values,()=>{
-  this.props.history.push('/results');
-  });
+  const from = 0;
+  this.props.performQuery(values,from);
 }
 
 renderTextField = ({ input, label, type}) => (
@@ -33,6 +33,9 @@ renderTextField = ({ input, label, type}) => (
                   <button type='submit' className='btn btn-primary'>Search</button>
                 </form>
               </div>
+            </div>
+            <div>
+              <DisplayData />
             </div>
           </div>
         )
