@@ -9,6 +9,12 @@ import Navigation from './Navigation';
 import ShowProduct from './ShowProduct';
 
 class Fruit extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      render: false
+    }
+  }
 
   componentDidMount=() =>{
     const value = 'fruit';
@@ -19,8 +25,33 @@ class Fruit extends React.Component {
   handlePageClick=(data)=>{
     const value = 'fruit';
     let selected_page = data.selected;
-    this.props.fetchCategory(value, selected_page);
+    if (this.state.render) {
+    this.props.sortByPrice(value, selected_page)
+  } else{
+    this.props.fetchCategory(value, selected_page)
+  }
     this.props.history.push(`/fruit/page=${data.selected+1 }`)
+  }
+
+
+  priceSortDesc=()=>{
+    this.setState({
+      render: true
+    });
+    const value = 'fruit';
+    let selected_page = 0;
+    this.props.sortByPrice(value, selected_page);
+    this.props.history.push(`/fruit/page=${selected_page+1 }`)
+  }
+
+  priceSortAsc=()=>{
+    this.setState({
+      render: false
+    });
+    const value = 'fruit';
+    const selected_page = 0;
+    this.props.fetchCategory(value, selected_page);
+    this.props.history.push(`/fruit/page=${selected_page+1 }`)
   }
 
   showData=()=> {
@@ -35,6 +66,10 @@ class Fruit extends React.Component {
     return <div>
     <div>
       <Navigation />
+    </div>
+    <div>
+      <button className='btn btn-primary' onClick={this.priceSortDesc}>price: highest first</button>
+      <button className='btn btn-primary' onClick={this.priceSortAsc}>price: lowest first</button>
     </div>
       {this.showData()}
       <div>

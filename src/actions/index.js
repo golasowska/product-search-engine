@@ -17,14 +17,15 @@ export function performQuery(values,selected_page) {
     elasticClient.search({
       size : page_size,
       from : from,
-      body :{
-        query:{
-          match:{
-            name: value
+      body: {
+        query: {
+          multi_match: {
+            query: value,
+            fields: ['tags', 'name', 'description']
+          }
         }
-      }
-    }
-    })
+        }
+      })
     .then(
       function(body) {
         const data = {data: body.hits, name: value}
@@ -53,8 +54,44 @@ export function fetchCategory(value, selected_page) {
           match: {
             tags: item
           }
+        },
+        sort: [
+          {'price': 'asc'}
+        ]
         }
-        }
+    })
+    .then(
+      function(body) {
+        dispatch({
+          type: DISPLAY_CATEGORY,
+          payload: body.hits
+        })
+      }
+    ).catch(function(error){
+      console.log(error.message);
+    });
+  }
+}
+
+export function sortByPrice (value, selected_page) {
+  const item = value;
+  const page_size = 5;
+  const page_number = Number(selected_page);
+  const from = (page_size * page_number);
+  return function(dispatch) {
+    elasticClient.search({
+      from: from,
+      size: page_size,
+      body:{
+        query:{
+          match: {
+            tags: item
+          }
+        },
+        sort: [
+          {'price': 'desc'}
+        ]
+      }
     })
     .then(
       function(body) {
