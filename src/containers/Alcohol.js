@@ -18,7 +18,8 @@ class Alcohol extends React.Component{
   handlePageClick=(data)=>{
     const value = 'alcohol';
     let selected_page = data.selected;
-    this.props.fetchCategory(value, selected_page)
+    this.props.fetchCategory(value, selected_page);
+    this.props.history.push(`/alcohol/page=${data.selected+1 }`)
   }
 
   showData=()=> {

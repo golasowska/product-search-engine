@@ -19,7 +19,8 @@ class Vegetable extends React.Component{
   handlePageClick=(data)=>{
     const value = 'vegetable';
     let selected_page = data.selected;
-    this.props.fetchCategory(value, selected_page)
+    this.props.fetchCategory(value, selected_page);
+    this.props.history.push(`/vegetable/page=${data.selected+1 }`)
   }
 
   showData=()=> {

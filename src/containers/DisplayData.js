@@ -9,12 +9,6 @@ import Navigation from './Navigation';
 
 
 class DisplayData extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      selected_page: 1
-    }
-  }
 
 showData=()=>{
   const data = Object.assign({}, this.props.data.data);
@@ -25,13 +19,9 @@ showData=()=>{
 }
 
 handlePageClick=(data)=>{
-  console.log('paramsiki', this.props.match);
   const values = {title: this.props.data.name};
   let selected_page = data.selected;
   this.props.performQuery(values, selected_page);
-  this.setState({
-    selected_page: selected_page+1
-  });
   this.props.history.push(`/products/page=${data.selected+1 }`)
 }
 

@@ -12,16 +12,16 @@ export default class Navigation extends React.Component {
 
       <ul id='navig' className='nav navbar-nav navbar-right'>
         <li className='nav-item' key={1}>
-          <Link className='nav-link' to='/fruit'>Fruits</Link>
+          <Link className='nav-link' to='/fruit/page=1'>Fruits</Link>
         </li>
         <li className='nav-item' key={2}>
-          <Link className='nav-link' to='/vegetable'>Vegetables</Link>
+          <Link className='nav-link' to='/vegetable/page=1'>Vegetables</Link>
         </li>
         <li className='nav-item' key={3}>
-          <Link className='nav-link' to='/alcohol'>Alcohol</Link>
+          <Link className='nav-link' to='/alcohol/page=1'>Alcohol</Link>
         </li>
         <li className='nav-item' key={4}>
-          <Link className='nav-link' to='/meat'>Meat</Link>
+          <Link className='nav-link' to='/meat/page=1'>Meat</Link>
         </li>
       </ul>
       </div>
