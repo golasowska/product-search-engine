@@ -61,7 +61,7 @@ class Category extends React.Component {
   }
 
   render(){
-    console.log('this props history', this.props.history);
+    // console.log('this props history', this.props.history);
     const totalHits = this.props.data.total;
     const pageCount = Math.ceil(totalHits/5)
     return <div>
